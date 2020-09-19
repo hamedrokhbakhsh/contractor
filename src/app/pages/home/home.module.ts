@@ -8,12 +8,14 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import {SharedModule} from '../../shared/shared.module';
+import {PersianPipesModule} from 'ngx-persian-pipe';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
+        PersianPipesModule,
         HomePageRoutingModule,
         SharedModule
     ],
