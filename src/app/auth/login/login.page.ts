@@ -38,7 +38,8 @@ export class LoginPage implements OnInit {
               //console.log(localStorage.getItem('name'));
               this.router.navigate(['/home']);
               this.loading = false;
-            }else {
+            }
+            if (!this.response.status) {
               this.loading = false;
               this.toast.presentToast('اطلاعات وارده اشتباه هست').then;
             }

@@ -15,10 +15,12 @@ export class HomePage implements OnInit {
   filter = false;
   response: ResponseModel;
   serverData: FirstPage = {
-    registerNumber : '0' ,
-    registerCount: '0' ,
-    singleCount: '0' ,
-    singleNumber: '0'
+    RegisterNum : '0' ,
+    RegisterTotalCost: '0' ,
+    EducationNum: '0' ,
+    EducationTotalCost: '0',
+    SubServiceNum: '0' ,
+    SubServiceTotalCost: '0'
   } ;
 
   date = moment().locale('fa').format(' dddd,D MMMM YYYY');
@@ -33,6 +35,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.getData(this.data);
+    console.log(this.data)
   }
 
   filterButton() {
@@ -46,20 +49,27 @@ export class HomePage implements OnInit {
   }
 
   getData(data: FilterData){
+    this.loading = true ;
     this.service.firstPage(data).subscribe(
 
         res => {
           this.response = res ;
           if (this.response.status){
-            console.log(this.response.data);
-            this.serverData.registerNumber = this.response.data[0].registerNumber;
-            this.serverData.registerCount = this.response.data[0].registerCount ;
-            this.serverData.singleNumber =  this.response.data[0].singleNumber ;
-            this.serverData.singleCount = this.response.data[0].singleCount ;
+            this.serverData.RegisterNum = this.response.data.RegisterNum;
+            this.serverData.RegisterTotalCost = this.response.data.RegisterTotalCost;
+            this.serverData.SubServiceNum = this.response.data.SubServiceNum;
+            this.serverData.SubServiceTotalCost = this.response.data.SubServiceNum;
+            this.loading = false ;
           }else {
-            console.log(this.response.errorMessage);
             this.toast.presentToast('عدم ارتباط با سرور').then();
+            this.loading = true ;
+
+
+            console.log(this.response.errorMessage);
+            this.loading = true ;
+
           }
+
         }, error => {
           this.toast.presentToast('عدم ارتباط با سرور').then();
           console.log(error);

@@ -5,6 +5,7 @@ import {AppService} from '../../services/app.service';
 import {ToastService} from '../../services/toast.service';
 import {DetailsData} from '../../models/details-data';
 import {ResponseModel} from '../../models/response-model';
+import {catchError} from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail-reception',
@@ -42,9 +43,11 @@ export class DetailReceptionPage implements OnInit {
     this.service.single(data).subscribe(
         res => {
           this.response = res ;
+          // console.log(this.response)
           if (this.response.status){
 
             this.receiveData = this.response.data ;
+
             if (this.receiveData.length === 0){
               this.toast.presentToast('اطلاعاتی وجود ندارد').then();
             }
@@ -68,6 +71,7 @@ export class DetailReceptionPage implements OnInit {
   }
 
   getDataFromFilter(data: FilterData) {
+    this.filter = !this.filter;
     this.getData(data);
   }
 

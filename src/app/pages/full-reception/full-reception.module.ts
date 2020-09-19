@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { FullReceptionPageRoutingModule } from './full-reception-routing.module';
 import { FullReceptionPage } from './full-reception.page';
 import {SharedModule} from '../../shared/shared.module';
+// import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
     imports: [
@@ -12,7 +13,8 @@ import {SharedModule} from '../../shared/shared.module';
         FormsModule,
         IonicModule,
         FullReceptionPageRoutingModule,
-        SharedModule
+        SharedModule,
+        // SharedModule
     ],
     declarations: [FullReceptionPage]
 })

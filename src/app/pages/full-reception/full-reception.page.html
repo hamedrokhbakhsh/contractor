@@ -18,6 +18,7 @@
 
 
 
+    <ion-button>ok</ion-button>
     <ion-fab (click)="filterButton()" vertical="bottom" horizontal="center" slot="fixed">
         <ion-fab-button style="color: #0d0d0d" class="font ">
             <span style="color: #0d0d0d">فیلتر</span>
@@ -27,6 +28,6 @@
 
 </ion-content>
 
-<ion-footer *ngIf="filter" class="m-0" style="--background: rgba(0, 0, 0, 0.8);">
+<ion-footer class="m-0" style="--background: rgba(0, 0, 0, 0.8);">
     <app-filter (filterData)="dataFromFilter($event)"></app-filter>
 </ion-footer>
