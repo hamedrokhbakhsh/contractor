@@ -52,10 +52,11 @@
 
 
 
-  <ion-fab (click)="filterButton()" vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab  [disabled]="loading" (click)="filterButton()" vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button style="color: #0d0d0d" class="font ">
-      <ion-icon color="dark" *ngIf="!filter" name="add"></ion-icon>
-      <ion-icon color="dark" *ngIf="filter" name="close-outline"></ion-icon>
+      <ion-icon color="dark" *ngIf="!filter && !loading" name="add"></ion-icon>
+      <ion-icon color="dark" *ngIf="filter && !loading" name="close-outline"></ion-icon>
+      <ion-spinner *ngIf="loading"></ion-spinner>
     </ion-fab-button>
 
   </ion-fab>

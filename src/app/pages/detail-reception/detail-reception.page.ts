@@ -27,6 +27,7 @@ export class DetailReceptionPage implements OnInit {
     from: this.getTodayDate.getFullYear() + '/' + (this.getTodayDate.getMonth() + 1) + '/' + this.getTodayDate.getDate(),
     until: this.getTodayDate.getFullYear() + '/' + (this.getTodayDate.getMonth() + 1) + '/' + this.getTodayDate.getDate()
   };
+  loading = false;
 
   constructor(private router: Router, private service: AppService, private toast: ToastService) { }
 
@@ -40,6 +41,7 @@ export class DetailReceptionPage implements OnInit {
 
 
   getData(data: FilterData){
+    this.loading = true;
     this.service.single(data).subscribe(
         res => {
           this.response = res ;
@@ -48,12 +50,15 @@ export class DetailReceptionPage implements OnInit {
 
             this.receiveData = this.response.data ;
 
+            this.loading = false;
             if (this.receiveData.length === 0){
               this.toast.presentToast('اطلاعاتی وجود ندارد').then();
             }
 
           }else {
             this.toast.presentToast('عدم ارتباط با سرور').then();
+            this.loading = false;
+
           }
 
         }
